@@ -57,8 +57,14 @@ class ExampleStateful extends StatefulWidget {
 }
 
 class _ExampleStatefulState extends State<ExampleStateful> {
-  int index = 0;
-  
+  late int index;
+
+  @override
+  void initState() {
+    super.initState(); // 필수로 넣어야 함.
+    index = 5;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
