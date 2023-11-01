@@ -58,11 +58,19 @@ class ExampleStateful extends StatefulWidget {
 
 class _ExampleStatefulState extends State<ExampleStateful> {
   late int index;
+  late TextEditingController textEditingController;
 
   @override
   void initState() {
     super.initState(); // 필수로 넣어야 함.
     index = 5;
+    textEditingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
 
   @override
