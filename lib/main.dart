@@ -30,7 +30,7 @@ class ConstraintWidget extends StatelessWidget {
     return Column(
       children: [
         ExampleStateless(),
-        ExampleStateful(),
+        ExampleStateful(index: 3),
       ]
     );
   }
@@ -50,20 +50,21 @@ class ExampleStateless extends StatelessWidget {
 }
 
 class ExampleStateful extends StatefulWidget {
-  const ExampleStateful({super.key});
+  final int index;
+  const ExampleStateful({required this.index, super.key});
 
   @override
   State<ExampleStateful> createState() => _ExampleStatefulState();
 }
 
 class _ExampleStatefulState extends State<ExampleStateful> {
-  late int index;
+  late int _index;
   late TextEditingController textEditingController;
 
   @override
   void initState() {
     super.initState(); // 필수로 넣어야 함.
-    index = 5;
+    _index = widget.index;
     textEditingController = TextEditingController();
   }
 
@@ -79,19 +80,19 @@ class _ExampleStatefulState extends State<ExampleStateful> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            if (index == 5) {
-              index = 0;
+            if (_index == 5) {
+              _index = 0;
               return;
             }
 
-            index++;
+            _index++;
             // print(index);
           });
         },
         child: Container(
-          color: Colors.blue.withOpacity(index/5),
+          color: Colors.blue.withOpacity(_index/5),
           child: Center(
-            child: Text('$index'),
+            child: Text('$_index'),
           ),
         ),
       ),
